@@ -16,6 +16,8 @@ namespace WebApp.API.Models
         {
         }
 
+
+        public DbSet<User> Users { get; set; }
         public virtual DbSet<Product> Products { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -29,6 +31,10 @@ namespace WebApp.API.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<User>().ToTable("users");
+
+
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.ToTable("Product", "Production");
